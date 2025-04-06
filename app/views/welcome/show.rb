@@ -2,7 +2,7 @@
 
 class Views::Welcome::Show < Views::Base
   def initialize(content:)
-    @content = content   
+    @content = content
   end
 
   def view_template
