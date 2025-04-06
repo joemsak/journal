@@ -69,4 +69,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/thrust", "--host", "0.0.0.0", "./bin/rails", "s"]
+CMD ["./bin/thrust", "--host=0.0.0.0", "./bin/rails", "s"]
