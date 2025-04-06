@@ -30,7 +30,7 @@ export default class extends Controller {
       content: this.contentValue,
       editorProps: {
         attributes: {
-          class: 'p-4',
+          class: 'p-4 min-h-[50vh]',
         },
       },
       onUpdate: debouncedOnUpdate
