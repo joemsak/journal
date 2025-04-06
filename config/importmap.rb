@@ -18,3 +18,4 @@ pin "lodash.isplainobject" # @4.0.6
 pin "lodash.merge" # @4.6.2
 pin "postcss-selector-parser" # @6.0.10
 pin "util-deprecate" # @1.0.2
+pin "lodash.debounce" # @4.0.8
