@@ -3,7 +3,7 @@
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
 # docker build -t journal .
-# docker run -d -p 3000:3000 -e RAILS_MASTER_KEY=<value from config/master.key> --name journal journal
+# docker run -d -p 3000:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name journal journal
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
@@ -68,5 +68,5 @@ USER 1000:1000
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["./bin/thrust", "./bin/rails", "s", "-b", "0.0.0.0", "-p", "3000"]
+EXPOSE 80
+CMD ["./bin/thrust", "--host", "0.0.0.0", "./bin/rails", "s"]
