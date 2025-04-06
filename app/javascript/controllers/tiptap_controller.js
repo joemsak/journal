@@ -1,9 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
-import { Editor } from 'https://esm.sh/@tiptap/core'
-import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
 import debounce from 'lodash.debounce'
 
+import { Editor } from 'https://esm.sh/@tiptap/core'
+import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
 
 // Connects to data-controller="tiptap"
 export default class extends Controller {
@@ -12,16 +12,20 @@ export default class extends Controller {
   }
 
   connect() {
-    const debouncedOnUpdate = debounce(({ editor }) => {
-      fetch("/contents", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content
-        },
-        body: JSON.stringify({ "content": editor.getHTML() })
-      })
-    }, 350)
+    const func = ({ editor }) => {
+      const path = '/contents'
+      const method = 'POST'
+      const token = document.querySelector("meta[name='csrf-token']").content
+      const headers = {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      }
+      const body = JSON.stringify({'content': editor.getHTML()})
+
+      fetch(path, {method, headers, body})
+    }
+
+    const debouncedOnUpdate = debounce(func, 350)
 
     new Editor({
       element: this.element,
@@ -30,7 +34,7 @@ export default class extends Controller {
       content: this.contentValue,
       editorProps: {
         attributes: {
-          class: 'p-4 min-h-[50vh]',
+          class: 'p-4 min-h-[50vh]'
         },
       },
       onUpdate: debouncedOnUpdate
