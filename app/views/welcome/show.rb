@@ -5,7 +5,7 @@ class Views::Welcome::Show < Views::Base
     Layout(title: "Welcome") do
       h1 { "Hello, World" }
       p { "This is my Raspberry Pi 3" }
-      div(data: {controller: :tiptap})
+      div(data: { controller: :tiptap })
     end
   end
 end
