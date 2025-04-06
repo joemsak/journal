@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
-import { Editor } from '@tiptap/core'
-import StarterKit from '@tiptap/starter-kit'
+
+import { Editor } from 'https://esm.sh/@tiptap/core'
+import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
 
 
 // Connects to data-controller="tiptap"
