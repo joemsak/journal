@@ -10,6 +10,7 @@ class Components::Layout < Components::Base
 
     html do
       head do
+        meta(name: :viewport, content: "width=device-width, user-scalable=no")
         title { @title }
       end
 
