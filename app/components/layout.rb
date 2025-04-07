@@ -3,11 +3,12 @@
 class Components::Layout < Components::Base
   include Phlex::Rails::Layout
 
-  attr_reader :contents
+  attr_reader :contents, :navigation
 
-  def initialize(title:, contents: [])
+  def initialize(title:, contents: [], navigation: true)
     @title = "#{title} &bull; Technical Journal"
     @contents = contents
+    @navigation = navigation
   end
 
   def view_template
@@ -25,8 +26,10 @@ class Components::Layout < Components::Base
       end
 
       body(class: "flex h-screen flex-col flex-col-reverse justify-end md:flex-row") do
-        div(class: "py-4 px-8 md:w-[284px] md:border-r border-gray-300") do
-          render Nav.new(items: contents)
+        if navigation
+          div(class: "py-4 px-8 md:w-[284px] md:border-r border-gray-300") do
+            render Nav.new(items: contents)
+          end
         end
 
         main(class: "py-4 px-8 md:grow-1") { yield }
