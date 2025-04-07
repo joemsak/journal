@@ -1,4 +1,13 @@
 class ContentsController < ApplicationController
+  before_action -> {
+    unless session[:authenticated]
+      respond_to do |f|
+        f.html { redirect_to login_path }
+        f.json { render json: { error: "Forbidden" }, status: :forbidden }
+      end
+    end
+  }
+
   def new
     render Views::Contents::New.new(content:)
   end
