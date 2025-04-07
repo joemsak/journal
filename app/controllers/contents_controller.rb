@@ -1,4 +1,8 @@
 class ContentsController < ApplicationController
+  def new
+    render Views::Contents::New.new(content:)
+  end
+
   def create
     content.update!(body:)
     head :ok

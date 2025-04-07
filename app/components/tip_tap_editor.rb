@@ -1,10 +1,12 @@
 class Components::TipTapEditor < Components::Base
+  attr_reader :content
+
   def initialize(content:)
     @content = content
   end
 
   def view_template
-    div(data: { controller: :tiptap, tiptap_content_value: @content }, class: "mt-4") do
+    div(data: { controller: :tiptap, tiptap_content_value: content.body }, class: "mt-4") do
       div(class: "flex gap-2") do
         render TipTapButton.new(
           target: :heading1,
