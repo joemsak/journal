@@ -4,7 +4,9 @@ class Components::TipTapButton <  Components::Base
   def initialize(target:, action:, params: {}, title:, icon:)
     @tiptap_target = target
     @action = "tiptap##{action}"
-    @params = params
+    @params = params.transform_keys do |key|
+      "tiptap_#{key}_param"
+    end
     @title = title
     @icon = icon
   end
