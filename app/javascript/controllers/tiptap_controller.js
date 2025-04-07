@@ -69,10 +69,14 @@ export default class extends Controller {
         Heading,
         Blockquote.configure({
           HTMLAttributes: {
-            class: "p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
+            class: "p-4 my-4 border-s-4 border-gray-300"
           }
         }),
-        CodeBlock
+        CodeBlock.configure({
+          HTMLAttributes: {
+            class: "p-4 bg-gray-100 w-full overlflow-x-scroll"
+          }
+        }),
       ],
       autofocus: true,
       content: this.contentValue,

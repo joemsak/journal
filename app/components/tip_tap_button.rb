@@ -5,7 +5,7 @@ class Components::TipTapButton <  Components::Base
     @tiptap_target = target
     @action = "tiptap##{action}"
     @params = params.transform_keys do |key|
-      "tiptap_#{key}_param"
+      :"tiptap_#{key}_param"
     end
     @title = title
     @icon = icon
