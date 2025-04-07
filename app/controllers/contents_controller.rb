@@ -19,6 +19,6 @@ class ContentsController < ApplicationController
   end
 
   def entry_date
-    Date.today
+    Date.current
   end
 end
