@@ -9,7 +9,8 @@ class Views::Welcome::Show < Views::Base
     Layout(title: "Welcome") do
       h1(class: "font-bold text-2xl") { "Daily Technical Journal" }
       p(class: "mt-4") { "Today's entry:" }
-      div(data: { controller: :tiptap, tiptap_content_value: @content }, class: "mt-4 outline")
+
+      render Components::TipTapEditor.new(content: @content)
     end
   end
 end

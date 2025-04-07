@@ -17,6 +17,7 @@ class Components::Layout < Components::Base
         csp_meta_tag
         csrf_meta_tags
         stylesheet_link_tag(:app, "data-turbo-track": "reload")
+        script(src: "https://kit.fontawesome.com/b40bcfed01.js", crossorigin: :anonymous)
         javascript_importmap_tags
       end
 
