@@ -9,7 +9,7 @@ class Components::TipTapEditor < Components::Base
         render TipTapButton.new(
           target: :heading1,
           action: "toggleHeading",
-          params: { tiptap_level_param: 1 },
+          params: { level: 1 },
           title: "Heading 1",
           icon: "angles-up"
         )
@@ -17,7 +17,7 @@ class Components::TipTapEditor < Components::Base
         render TipTapButton.new(
           target: :heading2,
           action: "toggleHeading",
-          params: { tiptap_level_param: 2 },
+          params: { level: 2 },
           title: "Heading 2",
           icon: "angle-up"
         )
