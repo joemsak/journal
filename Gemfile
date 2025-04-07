@@ -65,3 +65,5 @@ gem "tailwind_merge", "~> 1.1"
 gem "tailwindcss-rails", "~> 4.2"
 
 gem "foreman", "~> 0.88.1", group: :development
+
+gem "bcrypt", "~> 3.1"
