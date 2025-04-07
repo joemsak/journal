@@ -61,7 +61,11 @@ export default class extends Controller {
       extensions: [
         Document,
         Text,
-        Paragraph,
+        Paragraph.configure({
+          HTMLAttributes: {
+            class: "min-h-4"
+          }
+        }),
         Heading,
         Blockquote.configure({
           HTMLAttributes: {
