@@ -20,7 +20,7 @@ export const Heading = BaseHeading.configure({ levels: [1, 2] }).extend({
     return [
       `h${level}`,
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        class: `${classes[level]}`,
+        class: `font-bold ${classes[level]}`,
       }),
       0,
     ]
@@ -70,12 +70,13 @@ export default class extends Controller {
         }),
         CodeBlock.configure({
           HTMLAttributes: {
-            class: "p-4 bg-gray-100 w-full overlflow-x-scroll"
+            class: "p-4 bg-gray-100 w-full truncate overflow-x-auto"
           }
         }),
       ],
       autofocus: true,
       content: this.contentValue,
+      injectCSS: false,
       editorProps: {
         attributes: {
           class: 'p-4 min-h-[50vh]'
@@ -101,25 +102,26 @@ export default class extends Controller {
   }
 
   toggleHeading(event) {
-    const button = event.target.closest("button")
     const level = event.params.level
     const editor = this.editor
 
     editor.chain().focus().toggleHeading({level}).run()
-    button.classList.toggle("bg-blue-200", editor.isActive('heading', {level}))
+    this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
+    this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+    this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
   }
 
   toggleBlockquote(event) {
-    const button = event.target.closest("button")
     const editor = this.editor
     editor.chain().focus().toggleBlockquote().run()
-    button.classList.toggle("bg-blue-200", editor.isActive('blockquote'))
+    this.blockQuoteTarget.classList.toggle("bg-blue-200", editor.isActive('blockquote'))
   }
 
   toggleCodeBlock(event) {
-    const button = event.target.closest("button")
     const editor = this.editor
     editor.chain().focus().toggleCodeBlock().run()
-    button.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
+    this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
+    this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
+    this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
   }
 }
