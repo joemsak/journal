@@ -3,8 +3,11 @@
 class Components::Layout < Components::Base
   include Phlex::Rails::Layout
 
-  def initialize(title:)
+  attr_reader :contents
+
+  def initialize(title:, contents: [])
     @title = "#{title} &bull; Technical Journal"
+    @contents = contents
   end
 
   def view_template
@@ -21,7 +24,13 @@ class Components::Layout < Components::Base
         javascript_importmap_tags
       end
 
-      body { yield }
+      body(class: "flex h-screen flex-col flex-col-reverse justify-end md:flex-row") do
+        div(class: "py-4 px-8 md:w-[284px] md:border-r border-gray-300") do
+          render Nav.new(items: contents)
+        end
+
+        main(class: "py-4 px-8 md:grow-1") { yield }
+      end
     end
   end
 end

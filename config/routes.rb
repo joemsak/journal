@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :contents, only: [:new, :create]
-  resources :sessions, only: [:new, :create]
+  resources :contents, only: %i[new create show]
+  resources :sessions, only: %i[new create]
 
   get :login, to: "sessions#new"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

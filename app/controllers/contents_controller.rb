@@ -9,7 +9,7 @@ class ContentsController < ApplicationController
   }
 
   def new
-    render Views::Contents::New.new(content:)
+    render Views::Contents::New.new(contents:, content:)
   end
 
   def create
@@ -17,7 +17,16 @@ class ContentsController < ApplicationController
     head :ok
   end
 
+  def show
+    content = content_source.find(params.expect(:id))
+    render Views::Contents::Show.new(contents:, content:)
+  end
+
   private
+
+  def contents
+    Content.order(entry_date: :desc)
+  end
 
   def content
     content_source.find_or_initialize_by(entry_date:)
