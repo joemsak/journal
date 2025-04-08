@@ -92,7 +92,7 @@ export default class extends Controller {
       injectCSS: false,
       editorProps: {
         attributes: {
-          class: 'p-4 min-h-[300px] max-h-[50vh] overflow-y-auto'
+          class: 'p-4 min-h-[352px] max-h-[75vh] overflow-y-auto'
         },
       },
 

@@ -16,7 +16,7 @@ class Views::Contents::Show < Views::Base
       h1(class: "font-bold text-xl md:text-2xl") { title }
       link_to "&larr; back".html_safe, root_path, class: "text-blue-900 hover:underline"
 
-      div(class: "mt-4 pt-4 border-t border-gray-300") do
+      div(class: "mt-4 pt-4 rounded border-t border-gray-300 max-h-[75vh] overflow-y-auto") do
         Rinku.auto_link(
           content.body,
           :all,
