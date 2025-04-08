@@ -13,7 +13,7 @@ class Views::Contents::New < Views::Base
       h1(class: "font-bold text-xl md:text-2xl") { "Daily Technical Journal" }
       p(class: "mt-4") { "Today's entry:" }
 
-      render Components::TipTapEditor.new(content:)
+      render Components::TipTap::Editor.new(content:)
     end
   end
 end

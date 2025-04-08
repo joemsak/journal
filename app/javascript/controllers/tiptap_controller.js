@@ -8,6 +8,8 @@ import Document from 'https://esm.sh/@tiptap/extension-document'
 import Text from 'https://esm.sh/@tiptap/extension-text'
 import Paragraph from 'https://esm.sh/@tiptap/extension-paragraph'
 import BaseHeading from 'https://esm.sh/@tiptap/extension-heading'
+import BulletList from 'https://esm.sh/@tiptap/extension-bullet-list'
+import ListItem from 'https://esm.sh/@tiptap/extension-list-item'
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote'
 import CodeBlock from 'https://esm.sh/@tiptap/extension-code-block'
 
@@ -32,6 +34,7 @@ export default class extends Controller {
   static targets = [
     'heading1',
     'heading2',
+    'bulletList',
     'blockQuote',
     'codeBlock',
     'editor'
@@ -67,6 +70,12 @@ export default class extends Controller {
           }
         }),
         Heading,
+        BulletList.configure({
+          HTMLAttributes: {
+            class: "list-disc ml-4"
+          }
+        }),
+        ListItem,
         Blockquote.configure({
           HTMLAttributes: {
             class: "p-4 my-4 border-s-4 border-gray-300"
@@ -113,6 +122,12 @@ export default class extends Controller {
     this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
     this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
     this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
+  }
+
+  toggleBulletList(event) {
+    const editor = this.editor
+    editor.chain().focus().toggleBulletList().run()
+    this.bulletListTarget.classList.toggle("bg-blue-200", editor.isActive('bulletList'))
   }
 
   toggleBlockquote(event) {

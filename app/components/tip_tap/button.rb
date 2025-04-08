@@ -1,4 +1,4 @@
-class Components::TipTapButton <  Components::Base
+class Components::TipTap::Button <  Components::Base
   attr_reader :tiptap_target, :action, :params, :title, :icon
 
   def initialize(target:, action:, params: {}, title:, icon:)
