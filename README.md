@@ -15,3 +15,8 @@ Personal app for me to keep a daily coder journal
 * Creates / auto-updates the entry for the current day
 * Review previous entries
 
+## Screenshots
+
+![Screenshot from 2025-04-08 08-30-53](https://github.com/user-attachments/assets/127d908d-2b58-43a8-a0e3-cb0b8ae7d83a)
+
+![Screenshot from 2025-04-08 08-31-03](https://github.com/user-attachments/assets/764bad61-857f-4bb5-a824-ad1d57a72c9f)
