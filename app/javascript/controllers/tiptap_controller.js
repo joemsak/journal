@@ -104,6 +104,7 @@ export default class extends Controller {
     this.editor.on('selectionUpdate', ({ editor }) => {
       this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
       this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+      this.bulletListTarget.classList.toggle("bg-blue-200", editor.isActive('bulletList'))
       this.blockQuoteTarget.classList.toggle("bg-blue-200", editor.isActive('blockquote'))
       this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
     })
