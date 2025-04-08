@@ -38,4 +38,3 @@ class Components::TipTap::Toolbar < Components::Base
     )
   end
 end
-
