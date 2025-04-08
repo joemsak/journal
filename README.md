@@ -1,24 +1,17 @@
-# README
+# Daily Technical Journal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Personal app for me to keep a daily coder journal
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+* TipTap custom editor https://tiptap.dev
+  * Heading 1
+  * Heading 2
+  * Bullet List
+  * Blockquote
+  * Code Block
+* Auto save on update
+* Detects and adds links automatically
+* Creates / auto-updates the entry for the current day
+* Review previous entries
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
