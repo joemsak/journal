@@ -37,6 +37,9 @@ export default class extends Controller {
     'bulletList',
     'blockQuote',
     'codeBlock',
+    'savingDots',
+    'savedText',
+    'errorText',
     'editor'
   ]
 
@@ -45,7 +48,7 @@ export default class extends Controller {
   }
 
   initialize() {
-    this.updateContentFn = ({ editor }) => {
+    this.onUpdate = ({ editor }) => {
       const path = '/contents'
       const method = 'POST'
       const token = document.querySelector("meta[name='csrf-token']").content
@@ -55,10 +58,21 @@ export default class extends Controller {
       }
       const body = JSON.stringify({'content': editor.getHTML()})
 
-      fetch(path, {method, headers, body})
-    }
+      this.savedTextTarget.classList.add('hidden')
+      this.errorTextTarget.classList.add('hidden')
+      this.savingDotsTarget.classList.remove('hidden')
 
-    this.debouncedOnUpdate = debounce(this.updateContentFn, 350)
+      debounce(() => {
+        fetch(path, {method, headers, body}).then(resp => {
+          this.savingDotsTarget.classList.add('hidden')
+
+          if (resp.status == 200)
+            this.savedTextTarget.classList.remove('hidden')
+          else
+            this.errorTextTarget.classList.remove('hidden')
+        })
+      }, 350)()
+    }
 
     this.editor = new Editor({
       extensions: [
@@ -96,7 +110,7 @@ export default class extends Controller {
         },
       },
 
-      onUpdate: this.debouncedOnUpdate
+      onUpdate: this.onUpdate
     })
   }
 
