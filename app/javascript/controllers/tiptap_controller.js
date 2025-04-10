@@ -72,7 +72,7 @@ export default class extends Controller {
         Heading,
         BulletList.configure({
           HTMLAttributes: {
-            class: "list-disc ml-4"
+            class: "list-disc ml-6"
           }
         }),
         ListItem,
