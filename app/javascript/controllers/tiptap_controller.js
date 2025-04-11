@@ -44,13 +44,14 @@ export default class extends Controller {
   ]
 
   static values = {
-    content: String
+    content: String,
+    entryId: String
   }
 
   initialize() {
     this.onUpdate = ({ editor }) => {
-      const path = '/entries'
-      const method = 'POST'
+      const path = `/entries/${this.entryIdValue}`
+      const method = 'PATCH'
       const token = document.querySelector("meta[name='csrf-token']").content
       const headers = {
         'Content-Type': 'application/json',

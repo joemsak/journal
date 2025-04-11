@@ -12,14 +12,18 @@ class EntriesController < ApplicationController
     render Views::Entries::New.new(entries:, entry:)
   end
 
-  def create
-    entry.update!(body:)
-    head :ok
+  def show
+    entry = entry_source.find_by(finder_params)
+    render Views::Entries::Show.new(entries:, entry:)
   end
 
-  def show
-    entry = entry_source.find(params.expect(:id))
-    render Views::Entries::Show.new(entries:, entry:)
+  def edit
+    render Views::Entries::Edit.new(entries:, entry:)
+  end
+
+  def update
+    entry.update!(body:)
+    head :ok
   end
 
   private
@@ -41,6 +45,10 @@ class EntriesController < ApplicationController
   end
 
   def entry_date
-    Date.current
+    params[:entry_date] || Date.current
+  end
+
+  def finder_params
+    { entry_date: params.expect(:entry_date) }
   end
 end

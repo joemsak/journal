@@ -7,8 +7,12 @@ class Components::TipTap::Editor < Components::Base
 
   def view_template
     div(
-      data: { controller: :tiptap, tiptap_content_value: entry.body },
-      class: "mt-4"
+      class: "mt-4",
+      data: {
+        controller: :tiptap,
+        tiptap_entry_id_value: entry.to_param,
+        tiptap_content_value: entry.body
+      }
     ) do
       render Toolbar.new
       div(data: { tiptap_target: :editor }, class: "hidden mt-4 outline")
