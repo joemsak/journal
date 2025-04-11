@@ -1,4 +1,6 @@
 class Entry < ApplicationRecord
+  has_many :tasks
+
   def to_param
     entry_date.strftime("%Y-%m-%d")
   end
