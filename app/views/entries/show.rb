@@ -29,18 +29,7 @@ class Views::Entries::Show < Views::Base
         class: "text-blue-900 hover:underline"
       )
 
-      div(
-        class: "
-          mt-4
-          pt-4
-          rounded
-          border-t
-          border-gray-300
-          max-h-[75vh]
-          wrap-break-word
-          overflow-y-auto
-        "
-      ) do
+      div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
         Rinku.auto_link(
           entry.body,
           :all,

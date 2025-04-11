@@ -14,7 +14,7 @@ class Components::Layout < Components::Base
   def view_template
     doctype
 
-    html do
+    html(class: "h-full") do
       head do
         title { @title.html_safe }
         meta(name: :viewport, content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
@@ -25,9 +25,9 @@ class Components::Layout < Components::Base
         javascript_importmap_tags
       end
 
-      body(class: "flex h-screen flex-col flex-col-reverse justify-end md:flex-row") do
+      body(class: "min-h-full flex flex-col flex-col-reverse items-stretch justify-end md:flex-row") do
         if navigation
-          div(class: "py-4 px-8 md:w-[284px] md:border-r border-gray-300") do
+          div(class: "py-4 px-8 md:min-w-[284px] md:border-r border-gray-300") do
             render Nav.new(items: entries)
           end
         end
