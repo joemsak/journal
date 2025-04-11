@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :contents, only: %i[new create show]
+  resources :entries, except: %i[index destroy]
   resources :sessions, only: %i[new create]
 
   get :login, to: "sessions#new"
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  root "contents#new"
+  root "entries#new"
 end

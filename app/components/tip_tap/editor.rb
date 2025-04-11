@@ -1,13 +1,13 @@
 class Components::TipTap::Editor < Components::Base
-  attr_reader :content
+  attr_reader :entry
 
-  def initialize(content:)
-    @content = content
+  def initialize(entry:)
+    @entry = entry
   end
 
   def view_template
     div(
-      data: { controller: :tiptap, tiptap_content_value: content.body },
+      data: { controller: :tiptap, tiptap_content_value: entry.body },
       class: "mt-4"
     ) do
       render Toolbar.new

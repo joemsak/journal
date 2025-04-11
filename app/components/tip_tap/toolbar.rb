@@ -41,13 +41,13 @@ class Components::TipTap::Toolbar < Components::Base
       end
 
       div do
-        div(class: "hidden flex space-x-1 items-center", data: { tiptap_target: :savingDots }) do
-          div(class: "dot w-2 h-2 bg-blue-500 rounded-full animate-pulse")
-          div(class: "dot w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-200")
-          div(class: "dot w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-400")
+        div(class: "hidden flex space-x-0.5 items-center", data: { tiptap_target: :savingDots }) do
+          div(class: "dot w-1 h-1 bg-blue-500 rounded-full animate-pulse")
+          div(class: "dot w-1 h-1 bg-blue-500 rounded-full animate-pulse delay-100")
+          div(class: "dot w-1 h-1 bg-blue-500 rounded-full animate-pulse delay-200")
         end
 
-        div(class: "hidden text-red-200", data: { tiptap_target: :errorText }) { "Error while saving" }
+        div(class: "hidden text-red-400", data: { tiptap_target: :errorText }) { "Error while saving" }
         div(class: "hidden text-gray-500", data: { tiptap_target: :savedText }) { "Saved" }
       end
     end

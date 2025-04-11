@@ -49,14 +49,14 @@ export default class extends Controller {
 
   initialize() {
     this.onUpdate = ({ editor }) => {
-      const path = '/contents'
+      const path = '/entries'
       const method = 'POST'
       const token = document.querySelector("meta[name='csrf-token']").content
       const headers = {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       }
-      const body = JSON.stringify({'content': editor.getHTML()})
+      const body = JSON.stringify({entry: {body: editor.getHTML()}})
 
       this.savedTextTarget.classList.add('hidden')
       this.errorTextTarget.classList.add('hidden')

@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-class Views::Contents::Show < Views::Base
+class Views::Entries::Show < Views::Base
   include Phlex::Rails::Helpers::LinkTo
 
-  attr_reader :contents, :content, :title
+  attr_reader :entries, :entry, :title
 
-  def initialize(contents:, content:)
-    @contents = contents
-    @content = content
-    @title = "Entry for #{content.list_item_name}"
+  def initialize(entries:, entry:)
+    @entries = entries
+    @entry = entry
+    @title = "Entry for #{entry.list_item_name}"
   end
 
   def view_template
-    Layout(title:, contents:) do
+    Layout(title:, entries:) do
       h1(class: "font-bold text-xl md:text-2xl") { title }
 
       link_to(
@@ -34,7 +34,7 @@ class Views::Contents::Show < Views::Base
         "
       ) do
         Rinku.auto_link(
-          content.body,
+          entry.body,
           :all,
           "class='text-blue-600 hover:underline' target='_blank'"
         ).html_safe
