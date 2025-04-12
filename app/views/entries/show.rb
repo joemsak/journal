@@ -25,12 +25,14 @@ class Views::Entries::Show < Views::Base
         class: "text-blue-900 hover:underline"
       )
 
-      div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
-        Rinku.auto_link(
-          entry.body || entry.tasks.last.notes,
-          :all,
-          "class='text-blue-600 hover:underline' target='_blank'"
-        ).html_safe
+      ([entry] + entry.tasks).each do |resource|
+        div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
+          Rinku.auto_link(
+            resource.try(:body).presence || resource.try(:notes) || "",
+            :all,
+            "class='text-blue-600 hover:underline' target='_blank'"
+          ).html_safe
+        end
       end
     end
   end

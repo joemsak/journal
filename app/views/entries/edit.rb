@@ -32,6 +32,19 @@ class Views::Entries::Edit < Views::Base
           )
         end
       end
+
+      div(data: { controller: :entry }, class: "mt-4") do
+        (entry.tasks.presence || [entry.tasks.build]).each do |task|
+          div(data: { entry_target: :body }) do
+            render Components::TipTap::Editor.new(
+              resource: task,
+              attribute: :notes,
+              path: entry_path(entry),
+              method: :patch,
+            )
+          end
+        end
+      end
     end
   end
 end
