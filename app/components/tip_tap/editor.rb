@@ -1,8 +1,13 @@
 class Components::TipTap::Editor < Components::Base
-  attr_reader :entry
+  attr_reader :path, :method, :content, :entity_name, :resource_id, :attribute
 
-  def initialize(entry:)
-    @entry = entry
+  def initialize(resource:, attribute:, path:, method:)
+    @entity_name = resource.class.name.underscore
+    @resource_id = resource.id
+    @attribute = attribute
+    @path = path
+    @method = method
+    @content = resource.public_send(attribute)
   end
 
   def view_template
@@ -10,8 +15,12 @@ class Components::TipTap::Editor < Components::Base
       class: "mt-4",
       data: {
         controller: :tiptap,
-        tiptap_entry_id_value: entry.to_param,
-        tiptap_content_value: entry.body
+        tiptap_path_value: path,
+        tiptap_method_value: method,
+        tiptap_content_value: content,
+        tiptap_entity_name_value: entity_name,
+        tiptap_attribute_value: attribute,
+        tiptap_resource_id_value: resource_id
       }
     ) do
       render Toolbar.new

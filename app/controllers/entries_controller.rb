@@ -22,8 +22,17 @@ class EntriesController < ApplicationController
   end
 
   def update
-    entry.update!(body:)
-    head :ok
+    resource_id = if entry_params && entry.update(entry_params)
+      entry.id
+    elsif task_params && entry.update(task_params)
+      entry.tasks.order(:created_at).pluck(:id).last
+    end
+
+    if resource_id
+      render json: { resourceId: resource_id }
+    else
+      render json: entry.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -36,8 +45,14 @@ class EntriesController < ApplicationController
     entry_source.find_or_initialize_by(entry_date:)
   end
 
-  def body
-    params.require(:entry).expect(:body)
+  def entry_params
+    params[:entry].permit(:body).presence
+  end
+
+  def task_params
+    if params[:task].present?
+      { tasks_attributes: [ params[:task].permit(:id, :notes) ] }
+    end
   end
 
   def entry_source

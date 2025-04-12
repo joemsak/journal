@@ -69,3 +69,7 @@ gem "foreman", "~> 0.88.1", group: :development
 gem "bcrypt", "~> 3.1"
 
 gem "rinku", "~> 2.0"
+
+gem "pry-rails", "~> 0.3.11", group: :development
+
+gem "pry-remote", "~> 0.1.8", group: :development

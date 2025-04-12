@@ -24,7 +24,12 @@ class Views::Entries::Edit < Views::Base
         ) { "&plus; Show body".html_safe }
 
         div(data: { entry_target: :body }, class: "hidden") do
-          render Components::TipTap::Editor.new(entry:)
+          render Components::TipTap::Editor.new(
+            resource: entry,
+            attribute: :body,
+            path: entry_path(entry),
+            method: :patch,
+          )
         end
       end
     end

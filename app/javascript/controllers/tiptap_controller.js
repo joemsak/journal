@@ -1,7 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-import debounce from 'lodash.debounce'
-
 import { Editor, mergeAttributes } from 'https://esm.sh/@tiptap/core'
 
 import Document from 'https://esm.sh/@tiptap/extension-document'
@@ -45,34 +43,53 @@ export default class extends Controller {
 
   static values = {
     content: String,
-    entryId: String
+    path: String,
+    method: String,
+    entityName: String,
+    attribute: String,
+    resourceId: Number
   }
 
   initialize() {
-    this.onUpdate = ({ editor }) => {
-      const path = `/entries/${this.entryIdValue}`
-      const method = 'PATCH'
+    const onUpdate = ({ editor }) => {
+      if (this.updateTimeoutId) clearTimeout(this.updateTimeoutId)
+
       const token = document.querySelector("meta[name='csrf-token']").content
+
+      const method = this.methodValue.toUpperCase()
+
       const headers = {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       }
-      const body = JSON.stringify({entry: {body: editor.getHTML()}})
+
+      const params = {}
+      params[this.entityNameValue] = {}
+      params[this.entityNameValue][this.attributeValue] = editor.getHTML()
+      if (this.resourceIdValue) params[this.entityNameValue]['id'] = this.resourceIdValue
+
+      const body = JSON.stringify(params)
 
       this.savedTextTarget.classList.add('hidden')
       this.errorTextTarget.classList.add('hidden')
       this.savingDotsTarget.classList.remove('hidden')
 
-      debounce(() => {
-        fetch(path, {method, headers, body}).then(resp => {
-          this.savingDotsTarget.classList.add('hidden')
+      this.updateTimeoutId = setTimeout(() => {
+        fetch(this.pathValue, { method, headers, body })
+          .then(resp => {
+            this.savingDotsTarget.classList.add('hidden')
 
-          if (resp.status == 200)
+            if (!resp.ok) {
+              this.errorTextTarget.classList.remove('hidden')
+              throw new Error(resp.json())
+            }
+
             this.savedTextTarget.classList.remove('hidden')
-          else
-            this.errorTextTarget.classList.remove('hidden')
-        })
-      }, 350)()
+            return resp.json()
+          })
+          .then(json => this.resourceIdValue = json.resourceId)
+          .catch(err => console.error(err))
+      }, 350)
     }
 
     this.editor = new Editor({
@@ -111,7 +128,7 @@ export default class extends Controller {
         },
       },
 
-      onUpdate: this.onUpdate
+      onUpdate
     })
   }
 
