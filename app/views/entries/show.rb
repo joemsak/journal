@@ -16,11 +16,7 @@ class Views::Entries::Show < Views::Base
       div(class: "flex items-center gap-4") do
         h1(class: "font-bold text-xl md:text-2xl") { @title }
 
-        link_to(
-          "edit".html_safe,
-          edit_entry_path(entry),
-          class: "text-blue-900 hover:underline"
-        )
+        link_to("edit", edit_entry_path(entry), class: "text-blue-900 hover:underline")
       end
 
       link_to(
