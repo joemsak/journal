@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :task_forms, only: %i[create]
   end
 
+  patch :tasks, to: "tasks#update"
+
   resources :sessions, only: %i[new create]
 
   get :login, to: "sessions#new"

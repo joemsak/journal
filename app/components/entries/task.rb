@@ -7,14 +7,12 @@ class Components::Entries::Task < Components::Base
   end
 
   def view_template
-    div(data: { controller: :task }) do
+    div(data: { controller: :task, task_task_id_value: task.id }) do
       div(
         contenteditable: true,
-        data: { task_target: :title },
+        data: { task_target: :title, action: "keydown.enter->task#saveTitle:prevent" },
         class: "font-bold text-lg md:text-xl"
-      ) do
-        task.title
-      end
+      ) { task.title }
 
       button(
         data: { action: "task#toggleNotes", task_target: :notesBtn },
