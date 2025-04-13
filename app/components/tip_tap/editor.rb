@@ -7,7 +7,7 @@ class Components::TipTap::Editor < Components::Base
     @attribute = attribute
     @path = path
     @method = method
-    @content = resource.public_send(attribute)
+    @content = resource.public_send(String(attribute).underscore)
   end
 
   def view_template

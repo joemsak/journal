@@ -6,9 +6,6 @@ export default class extends Controller {
   static values = { active: String };
 
   connect() {
-    if (!this.hasActiveValue && this.triggerTargets.length > 0) {
-      this.activeValue = this.triggerTargets[0].dataset.value;
-    }
   }
 
   show(e) {

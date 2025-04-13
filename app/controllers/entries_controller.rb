@@ -45,9 +45,18 @@ class EntriesController < ApplicationController
   end
 
   def task_params
-    if params[:task].present?
-      { tasks_attributes: [ params[:task].permit(:id, :notes) ] }
-    end
+    { tasks_attributes: [ task_attribute_params ] } if params[:task].present?
+  end
+
+  def task_attribute_params
+    params.require(:task).permit(
+      :id,
+      :notes,
+      :challenges,
+      :successes,
+      :improvements,
+      :next_steps
+    )
   end
 
   def entry_source

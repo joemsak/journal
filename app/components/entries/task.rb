@@ -14,18 +14,78 @@ class Components::Entries::Task < Components::Base
         class: "font-bold text-lg md:text-xl"
       ) { task.title }
 
-      button(
-        data: { action: "task#toggleNotes", task_target: :notesBtn },
-        class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center"
-      ) { "&plus; Show notes".html_safe }
+      Tabs do
+        TabsList do
+          TabsTrigger(
+            value: "notes",
+            class: "cursor-pointer transition-colors hover:text-black"
+          ) { "Notes" }
 
-      div(class: :hidden, data: { task_target: :notes }) do
-        render Components::TipTap::Editor.new(
-          resource: task,
-          attribute: :notes,
-          path: entry_path(entry),
-          method: :patch,
-        )
+          TabsTrigger(
+            value: "challenges",
+            class: "cursor-pointer transition-colors hover:text-black"
+          ) { "Challenges" }
+
+          TabsTrigger(
+            value: "successes",
+            class: "cursor-pointer transition-colors hover:text-black"
+          ) { "Successes" }
+
+          TabsTrigger(
+            value: "improvements",
+            class: "cursor-pointer transition-colors hover:text-black"
+          ) { "Improvements" }
+
+          TabsTrigger(
+            value: "next_steps",
+            class: "cursor-pointer transition-colors hover:text-black"
+          ) { "Next steps" }
+        end
+
+        TabsContent(value: "notes") do
+          render Components::TipTap::Editor.new(
+            resource: task,
+            attribute: :notes,
+            path: entry_path(entry),
+            method: :patch,
+          )
+        end
+
+        TabsContent(value: "challenges") do
+          render Components::TipTap::Editor.new(
+            resource: task,
+            attribute: :challenges,
+            path: entry_path(entry),
+            method: :patch,
+          )
+        end
+
+        TabsContent(value: "successes") do
+          render Components::TipTap::Editor.new(
+            resource: task,
+            attribute: :successes,
+            path: entry_path(entry),
+            method: :patch,
+          )
+        end
+
+        TabsContent(value: "improvements") do
+          render Components::TipTap::Editor.new(
+            resource: task,
+            attribute: :improvements,
+            path: entry_path(entry),
+            method: :patch,
+          )
+        end
+
+        TabsContent(value: "next_steps") do
+          render Components::TipTap::Editor.new(
+            resource: task,
+            attribute: :nextSteps,
+            path: entry_path(entry),
+            method: :patch,
+          )
+        end
       end
     end
   end
