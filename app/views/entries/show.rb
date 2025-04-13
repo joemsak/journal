@@ -25,13 +25,79 @@ class Views::Entries::Show < Views::Base
         class: "text-blue-900 hover:underline"
       )
 
-      ([ entry ] + entry.tasks).each do |resource|
+      if entry.body.present?
         div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
           Rinku.auto_link(
-            resource.try(:body).presence || resource.try(:notes) || "",
+            entry.body,
             :all,
             "class='text-blue-600 hover:underline' target='_blank'"
           ).html_safe
+        end
+      end
+
+      entry.tasks.each do |task|
+        div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
+          h2(class: "font-bold text-lg md:text-xl") { task.title }
+
+          if task.notes.present?
+            h3(class: "font-bold") { "Notes" }
+
+            div(class: "mt-4") do
+              Rinku.auto_link(
+                task.notes,
+                :all,
+                "class='text-blue-600 hover:underline' target='_blank'"
+              ).html_safe
+            end
+          end
+
+          if task.challenges.present?
+            h3(class: "font-bold") { "Challenges" }
+
+            div(class: "mt-4") do
+              Rinku.auto_link(
+                task.challenges,
+                :all,
+                "class='text-blue-600 hover:underline' target='_blank'"
+              ).html_safe
+            end
+          end
+
+          if task.successes.present?
+            h3(class: "font-bold") { "Successes" }
+
+            div(class: "mt-4") do
+              Rinku.auto_link(
+                task.successes,
+                :all,
+                "class='text-blue-600 hover:underline' target='_blank'"
+              ).html_safe
+            end
+          end
+
+          if task.improvements.present?
+            h3(class: "font-bold") { "Improvements next time" }
+
+            div(class: "mt-4") do
+              Rinku.auto_link(
+                task.improvements,
+                :all,
+                "class='text-blue-600 hover:underline' target='_blank'"
+              ).html_safe
+            end
+          end
+
+          if task.next_steps.present?
+            h3(class: "font-bold") { "Next steps" }
+
+            div(class: "mt-4") do
+              Rinku.auto_link(
+                task.next_steps,
+                :all,
+                "class='text-blue-600 hover:underline' target='_blank'"
+              ).html_safe
+            end
+          end
         end
       end
     end
