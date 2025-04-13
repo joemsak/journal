@@ -7,9 +7,6 @@ export default class extends Controller {
     'bodyBtn',
   ]
 
-  addTask() {
-  }
-
   toggleBody(event) {
     const button = this.bodyBtnTarget
     const body = this.bodyTarget

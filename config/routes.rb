@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :entries, except: %i[index create destroy], param: :entry_date
+  resources :entries, except: %i[index create destroy], param: :entry_date do
+    resources :task_forms, only: %i[create]
+  end
+
   resources :sessions, only: %i[new create]
 
   get :login, to: "sessions#new"

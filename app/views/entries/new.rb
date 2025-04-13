@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Views::Entries::New < Views::Base
+  include Phlex::Rails::Helpers::ButtonTo
+  include Phlex::Rails::Helpers::TurboStream
+  include Phlex::Rails::Helpers::TurboFrameTag
+
   attr_reader :entries, :entry
 
   def initialize(entries:, entry:)
@@ -14,13 +18,18 @@ class Views::Entries::New < Views::Base
       p(class: "mt-4") { "Today's entry:" }
 
       div(data: { controller: :entry }, class: "mt-4") do
-        button(
-          data: { action: "entry#addTask", entry_target: :addTaskBtn },
-          class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center"
-        ) { "&plus; Add task".html_safe }
+        button_to(
+          "&plus; Add task".html_safe,
+          entry_task_forms_path(entry), 
+          method: :post, 
+          class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center",
+          form: { data: { turbo_frame: :tasks_frame } }
+        )
 
-        (entry.tasks.presence || [entry.tasks.build]).each do |task|
-          div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
+        turbo_frame_tag(:tasks_frame) do
+          (entry.tasks.presence || [entry.tasks.build]).each do |task|
+            div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
+          end
         end
       end
     end
