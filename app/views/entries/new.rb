@@ -18,13 +18,13 @@ class Views::Entries::New < Views::Base
       p(class: "mt-4") { "Today's entry:" }
 
       div(data: { controller: :entry }, class: "mt-4") do
-        button_to(
-          "&plus; Add task".html_safe,
-          entry_task_forms_path(entry),
+        ButtonTo(
+          variant: :outline,
+          path: entry_task_forms_path(entry),
           method: :post,
           class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center",
           form: { data: { turbo_frame: :tasks_frame } }
-        )
+        ) { "&plus; Add task".html_safe }
 
         turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
           entry.tasks.each do |task|

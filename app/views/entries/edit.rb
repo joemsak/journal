@@ -21,9 +21,9 @@ class Views::Entries::Edit < Views::Base
       link_to("&larr; back".html_safe, entry, class: "text-blue-900 hover:underline")
 
       div(data: { controller: :entry }, class: "mt-4") do
-        button(
+        Button(
+          variant: :outline,
           data: { action: "entry#toggleBody", entry_target: :bodyBtn },
-          class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center"
         ) { "&plus; Show body".html_safe }
 
         div(data: { entry_target: :body }, class: "hidden") do
@@ -35,13 +35,13 @@ class Views::Entries::Edit < Views::Base
           )
         end
 
-        button_to(
-          "&plus; Add task".html_safe,
-          entry_task_forms_path(entry),
+        ButtonTo(
+          variant: :outline,
+          path: entry_task_forms_path(entry),
           method: :post,
-          class: "mt-4 px-4 py-2 outline cursor-pointer flex gap-1 items-center",
-          form: { data: { turbo_frame: :tasks_frame } }
-        )
+          form: { data: { turbo_frame: :tasks_frame } },
+          class: "mt-4"
+        ) { "&plus; Add task".html_safe }
 
         turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
           entry.tasks.each do |task|
