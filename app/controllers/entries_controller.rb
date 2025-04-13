@@ -22,23 +22,18 @@ class EntriesController < ApplicationController
   end
 
   def update
-    resource_id = if entry_params && entry.update(entry_params)
-      entry.id
-    elsif task_params && entry.update(task_params)
-      entry.tasks.order(:created_at).pluck(:id).last
-    end
-
-    if resource_id
-      render json: { resourceId: resource_id }
-    else
-      render json: entry.errors, status: :unprocessable_entity
-    end
+    entry.update(entry_params || task_params)
+    render json: { resourceId: task_id }
   end
 
   private
 
   def entries
     Entry.order(entry_date: :desc)
+  end
+
+  def task_id
+    params.dig(:task, :id) || entry.tasks.pick(:id)
   end
 
   def entry
