@@ -33,7 +33,7 @@ class Views::Entries::Edit < Views::Base
         end
       end
 
-      (entry.tasks.presence || [entry.tasks.build]).each do |task|
+      (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
         div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
       end
     end

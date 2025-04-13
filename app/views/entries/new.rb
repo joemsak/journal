@@ -20,14 +20,14 @@ class Views::Entries::New < Views::Base
       div(data: { controller: :entry }, class: "mt-4") do
         button_to(
           "&plus; Add task".html_safe,
-          entry_task_forms_path(entry), 
-          method: :post, 
+          entry_task_forms_path(entry),
+          method: :post,
           class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center",
           form: { data: { turbo_frame: :tasks_frame } }
         )
 
         turbo_frame_tag(:tasks_frame) do
-          (entry.tasks.presence || [entry.tasks.build]).each do |task|
+          (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
             div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
           end
         end
