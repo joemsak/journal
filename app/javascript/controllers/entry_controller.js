@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   toggleBody(event) {
-    const clicked = event.target
     const button = this.bodyBtnTarget
     const body = this.bodyTarget
 

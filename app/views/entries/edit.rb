@@ -33,9 +33,16 @@ class Views::Entries::Edit < Views::Base
         end
       end
 
-      div(data: { controller: :entry }, class: "mt-4") do
-        (entry.tasks.presence || [entry.tasks.build]).each do |task|
-          div(data: { entry_target: :body }) do
+      (entry.tasks.presence || [entry.tasks.build]).each do |task|
+        div(class: "mt-4", data: { controller: :task }) do
+          h2(class: "font-bold text-lg md:text-xl") { "Task" }
+
+          button(
+            data: { action: "task#toggleNotes", task_target: :notesBtn },
+            class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center"
+          ) { "&plus; Show notes".html_safe }
+
+          div(class: :hidden, data: { task_target: :notes }) do
             render Components::TipTap::Editor.new(
               resource: task,
               attribute: :notes,
