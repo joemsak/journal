@@ -8,6 +8,7 @@ export default class extends Controller {
   ]
 
   static values = {
+    entryDate: String,
     taskId: Number
   }
 
@@ -30,7 +31,13 @@ export default class extends Controller {
       'Content-Type': 'application/json',
       'X-CSRF-Token': token
     }
-    const body = JSON.stringify({task: {title: el.innerText, id: this.taskIdValue}})
+    const body = JSON.stringify({
+      entryDate: this.entryDateValue,
+      task: {
+        title: el.innerText,
+        id: this.taskIdValue,
+      }
+    })
 
     fetch('/tasks', { method: 'PATCH', headers, body })
       .then(resp => {

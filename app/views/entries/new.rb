@@ -20,15 +20,16 @@ class Views::Entries::New < Views::Base
       div(data: { controller: :entry }, class: "mt-4") do
         ButtonTo(
           variant: :outline,
-          path: entry_task_forms_path(entry),
+          path: task_forms_path,
           method: :post,
+          params: { entry_date: entry.to_param },
           form: { data: { turbo_frame: :tasks_frame } }
         ) { "&plus; Add task".html_safe }
 
         turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
           entry.tasks.each do |task|
             div(class: "mt-4") do
-              render Components::Entries::Task.new(entry:, task:)
+              render Components::Entries::Task.new(task:)
             end
           end
         end

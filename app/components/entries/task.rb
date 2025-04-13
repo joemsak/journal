@@ -1,13 +1,17 @@
 class Components::Entries::Task < Components::Base
   attr_reader :entry, :task
 
-  def initialize(entry:, task:)
-    @entry = entry
+  def initialize(task:)
     @task = task
+    @entry = task.entry
   end
 
   def view_template
-    div(data: { controller: :task, task_task_id_value: task.id }) do
+    div(data: {
+      controller: :task,
+      task_entry_date_value: entry.to_param,
+      task_task_id_value: task.id
+    }) do
       div(
         contenteditable: true,
         data: {

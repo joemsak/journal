@@ -2,19 +2,19 @@ class TaskFormsController < ApplicationController
   def create
     respond_to do |format|
       format.turbo_stream do
-        render Components::Entries::PrependTaskForm.new(entry:, task:)
+        render Components::Entries::PrependTaskForm.new(task:)
       end
     end
   end
 
   private
 
-  def entry
-    @entry ||= entry_source.find_or_initialize_by(entry_date:)
-  end
-
   def task
     entry.tasks.build
+  end
+
+  def entry
+    entry_source.find_or_initialize_by(entry_date:)
   end
 
   def entry_source
@@ -22,6 +22,6 @@ class TaskFormsController < ApplicationController
   end
 
   def entry_date
-    params[:entry_id] || Date.current
+    params[:entry_date] || Date.current
   end
 end
