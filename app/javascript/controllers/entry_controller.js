@@ -21,11 +21,11 @@ export default class extends Controller {
   }
 
   taskListTargetConnected(element) {
-    const connectedLength = element.children.length
-    const connectedTitle = element.querySelector('[data-title]')
-
-    if (!connectedTitle.innerHTML.length)
-      connectedTitle.innerHTML = `Untitled Task #${connectedLength}`
+    Array.from(element.children).forEach((child, i, children) => {
+      const title = child.querySelector('[data-title]')
+      if (title.innerHTML.length) return
+      title.innerHTML = `Untitled Task #${children.length - i}`
+    })
 
     const callback = (mutationList, observer) => {
       for (const mutation of mutationList) {
