@@ -22,7 +22,6 @@ class Views::Entries::New < Views::Base
           variant: :outline,
           path: entry_task_forms_path(entry),
           method: :post,
-          class: "px-4 py-2 outline cursor-pointer flex gap-1 items-center",
           form: { data: { turbo_frame: :tasks_frame } }
         ) { "&plus; Add task".html_safe }
 
