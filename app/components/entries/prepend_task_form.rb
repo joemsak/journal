@@ -10,7 +10,9 @@ class Components::Entries::PrependTaskForm < Phlex::HTML
 
   def view_template
     turbo_stream.prepend(:tasks_frame) do
-      div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
+      div(class: "mt-4") do
+        render Components::Entries::Task.new(entry:, task:)
+      end
     end
   end
 end

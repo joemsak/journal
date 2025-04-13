@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_12_151623) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_13_054813) do
   create_table "entries", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_12_151623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
+    t.string "title"
     t.index ["entry_id"], name: "index_tasks_on_entry_id"
   end
 

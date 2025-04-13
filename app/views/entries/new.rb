@@ -2,8 +2,8 @@
 
 class Views::Entries::New < Views::Base
   include Phlex::Rails::Helpers::ButtonTo
-  include Phlex::Rails::Helpers::TurboStream
   include Phlex::Rails::Helpers::TurboFrameTag
+  include Phlex::Rails::Helpers::TurboStream
 
   attr_reader :entries, :entry
 
@@ -26,9 +26,11 @@ class Views::Entries::New < Views::Base
           form: { data: { turbo_frame: :tasks_frame } }
         )
 
-        turbo_frame_tag(:tasks_frame) do
+        turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
           (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
-            div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
+            div(class: "mt-4") do
+              render Components::Entries::Task.new(entry:, task:)
+            end
           end
         end
       end

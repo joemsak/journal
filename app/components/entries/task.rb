@@ -8,7 +8,9 @@ class Components::Entries::Task < Components::Base
 
   def view_template
     div(data: { controller: :task }) do
-      h2(class: "font-bold text-lg md:text-xl") { "Task" }
+      h2(data: { title: true }, class: "font-bold text-lg md:text-xl") do
+        task.title
+      end
 
       button(
         data: { action: "task#toggleNotes", task_target: :notesBtn },

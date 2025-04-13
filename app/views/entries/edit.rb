@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class Views::Entries::Edit < Views::Base
+  include Phlex::Rails::Helpers::ButtonTo
   include Phlex::Rails::Helpers::LinkTo
+  include Phlex::Rails::Helpers::TurboFrameTag
+  include Phlex::Rails::Helpers::TurboStream
 
   attr_reader :entries, :entry
 
@@ -31,10 +34,22 @@ class Views::Entries::Edit < Views::Base
             method: :patch,
           )
         end
-      end
 
-      (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
-        div(class: "mt-4") { render Components::Entries::Task.new(entry:, task:) }
+        button_to(
+          "&plus; Add task".html_safe,
+          entry_task_forms_path(entry),
+          method: :post,
+          class: "mt-4 px-4 py-2 outline cursor-pointer flex gap-1 items-center",
+          form: { data: { turbo_frame: :tasks_frame } }
+        )
+
+        turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
+          (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
+            div(class: "mt-4") do
+              render Components::Entries::Task.new(entry:, task:)
+            end
+          end
+        end
       end
     end
   end
