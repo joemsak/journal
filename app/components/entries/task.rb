@@ -10,7 +10,13 @@ class Components::Entries::Task < Components::Base
     div(data: { controller: :task, task_task_id_value: task.id }) do
       div(
         contenteditable: true,
-        data: { task_target: :title, action: "keydown.enter->task#saveTitle:prevent" },
+        data: {
+          task_target: :title,
+          action: %(
+            keydown.enter->task#saveTitle:prevent
+            keydown.esc->task#blurTitle
+          ).squish
+        },
         class: "font-bold text-lg md:text-xl"
       ) { task.title }
 

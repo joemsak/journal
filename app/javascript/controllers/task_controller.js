@@ -43,4 +43,9 @@ export default class extends Controller {
       })
       .catch(err => console.error(err))
   }
+
+  blurTitle(event) {
+    window.getSelection().removeAllRanges()
+    event.target.blur()
+  }
 }
