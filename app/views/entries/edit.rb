@@ -44,7 +44,7 @@ class Views::Entries::Edit < Views::Base
         )
 
         turbo_frame_tag(:tasks_frame, data: { entry_target: :taskList }) do
-          (entry.tasks.presence || [ entry.tasks.build ]).each do |task|
+          entry.tasks.each do |task|
             div(class: "mt-4") do
               render Components::Entries::Task.new(entry:, task:)
             end

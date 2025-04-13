@@ -21,25 +21,25 @@ export default class extends Controller {
   }
 
   taskListTargetConnected(element) {
-    Array.from(element.children).forEach((child, i, children) => {
-      const title = child.querySelector('[data-title]')
+    const getTitle = el => el.querySelector('[data-task-target="title"]')
+
+    const setDefaultTitle = (elem, index, elems) => {
+      const title = getTitle(elem)
       if (title.innerHTML.length) return
-      title.innerHTML = `Untitled Task #${children.length - i}`
-    })
-
-    const callback = (mutationList, observer) => {
-      for (const mutation of mutationList) {
-        const length = mutation.target.children.length
-
-        mutation.addedNodes.forEach(node => {
-          const title = node.querySelector('[data-title]')
-          if (title.innerHTML.length) return
-          title.innerHTML = `Untitled Task #${length}`
-        })
-      }
+      title.innerHTML = `Untitled Task #${elems.length - index}`
     }
 
-    this.taskListObserver = new MutationObserver(callback)
+    const initTaskList = () => {
+      Array.from(element.children).forEach(setDefaultTitle)
+    }
+
+    initTaskList()
+
+    this.taskListObserver = new MutationObserver(() => {
+      initTaskList()
+      const title = getTitle(element)
+      if (title) window.getSelection().selectAllChildren(title)
+    })
 
     this.taskListObserver.observe(element, {childList: true})
   }

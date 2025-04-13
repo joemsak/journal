@@ -8,7 +8,11 @@ class Components::Entries::Task < Components::Base
 
   def view_template
     div(data: { controller: :task }) do
-      h2(data: { title: true }, class: "font-bold text-lg md:text-xl") do
+      div(
+        contenteditable: true,
+        data: { task_target: :title },
+        class: "font-bold text-lg md:text-xl"
+      ) do
         task.title
       end
 
