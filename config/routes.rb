@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :entries, except: %i[index create destroy], param: :entry_date
+  resources :entries, except: %i[index create edit destroy], param: :entry_date
   resources :task_forms, only: %i[create]
   patch :tasks, to: "tasks#update"
 

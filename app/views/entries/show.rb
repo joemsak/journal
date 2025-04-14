@@ -13,27 +13,13 @@ class Views::Entries::Show < Views::Base
 
   def view_template
     Layout(title: @title, entries:) do
-      div(class: "flex items-center gap-4") do
-        h1(class: "font-bold text-xl md:text-2xl") { @title }
-
-        link_to("edit", edit_entry_path(entry), class: "text-blue-900 hover:underline")
-      end
+      h1(class: "font-bold text-xl md:text-2xl") { @title }
 
       link_to(
         "&larr; today's entry".html_safe,
         root_path,
         class: "text-blue-900 hover:underline"
       )
-
-      if entry.body.present?
-        div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
-          Rinku.auto_link(
-            entry.body,
-            :all,
-            "class='text-blue-600 hover:underline' target='_blank'"
-          ).html_safe
-        end
-      end
 
       entry.tasks.each do |task|
         div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do

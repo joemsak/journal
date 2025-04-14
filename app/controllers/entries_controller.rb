@@ -17,12 +17,8 @@ class EntriesController < ApplicationController
     render Views::Entries::Show.new(entries:, entry:)
   end
 
-  def edit
-    render Views::Entries::Edit.new(entries:, entry:)
-  end
-
   def update
-    entry.update(entry_params || task_params)
+    entry.update(task_params)
     render json: { resourceId: task_id }
   end
 
@@ -38,10 +34,6 @@ class EntriesController < ApplicationController
 
   def entry
     entry_source.find_or_initialize_by(entry_date:)
-  end
-
-  def entry_params
-    params[:entry].permit(:body).presence
   end
 
   def task_params
