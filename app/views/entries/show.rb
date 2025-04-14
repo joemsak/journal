@@ -26,9 +26,9 @@ class Views::Entries::Show < Views::Base
           h2(class: "font-bold text-lg md:text-xl") { task.title }
 
           if task.notes.present?
-            h3(class: "font-bold") { "Notes" }
+            h3(class: "font-bold text-lg mt-4") { "Notes" }
 
-            div(class: "mt-4") do
+            div(class: "mt-2") do
               Rinku.auto_link(
                 task.notes,
                 :all,
@@ -38,9 +38,9 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.challenges.present?
-            h3(class: "font-bold") { "Challenges" }
+            h3(class: "font-bold text-lg mt-4") { "Challenges" }
 
-            div(class: "mt-4") do
+            div(class: "mt-2") do
               Rinku.auto_link(
                 task.challenges,
                 :all,
@@ -50,9 +50,9 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.successes.present?
-            h3(class: "font-bold") { "Successes" }
+            h3(class: "font-bold text-lg mt-4") { "Successes" }
 
-            div(class: "mt-4") do
+            div(class: "mt-2") do
               Rinku.auto_link(
                 task.successes,
                 :all,
@@ -62,9 +62,9 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.improvements.present?
-            h3(class: "font-bold") { "Improvements next time" }
+            h3(class: "font-bold text-lg mt-4") { "Improvements next time" }
 
-            div(class: "mt-4") do
+            div(class: "mt-2") do
               Rinku.auto_link(
                 task.improvements,
                 :all,
@@ -74,9 +74,9 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.next_steps.present?
-            h3(class: "font-bold") { "Next steps" }
+            h3(class: "font-bold text-lg mt-4") { "Next steps" }
 
-            div(class: "mt-4") do
+            div(class: "mt-2") do
               Rinku.auto_link(
                 task.next_steps,
                 :all,
