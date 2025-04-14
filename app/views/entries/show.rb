@@ -13,7 +13,7 @@ class Views::Entries::Show < Views::Base
 
   def view_template
     Layout(title: @title, entries:) do
-      h1(class: "font-bold text-xl md:text-2xl") { @title }
+      h1(class: "font-bold text-2xl md:text-3xl") { @title }
 
       link_to(
         "&larr; today's entry".html_safe,
@@ -23,10 +23,10 @@ class Views::Entries::Show < Views::Base
 
       entry.tasks.each do |task|
         div(class: "mt-4 wrap-break-word") do
-          h1(class: "font-bold text-xl md:text-2xl") { task.title }
+          h1(class: "font-bold text-2xl md:text-3xl") { task.title }
 
           if task.notes.present?
-            h2(class: "font-bold text-lg md:text-xl mt-4") { "Notes" }
+            h2(class: "font-bold text-xl md:text-2xl mt-4") { "Notes" }
 
             div(class: "mt-2") do
               Rinku.auto_link(
@@ -38,7 +38,7 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.challenges.present?
-            h2(class: "font-bold text-lg md:text-xl mt-4") { "Challenges" }
+            h2(class: "font-bold text-xl md:text-2xl mt-4") { "Challenges" }
 
             div(class: "mt-2") do
               Rinku.auto_link(
@@ -50,7 +50,7 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.successes.present?
-            h2(class: "font-bold text-lg md:text-xl mt-4") { "Successes" }
+            h2(class: "font-bold text-xl md:text-2xl mt-4") { "Successes" }
 
             div(class: "mt-2") do
               Rinku.auto_link(
@@ -62,7 +62,7 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.improvements.present?
-            h2(class: "font-bold text-lg md:text-xl mt-4") { "Improvements next time" }
+            h2(class: "font-bold text-xl md:text-2xl mt-4") { "Improvements next time" }
 
             div(class: "mt-2") do
               Rinku.auto_link(
@@ -74,7 +74,7 @@ class Views::Entries::Show < Views::Base
           end
 
           if task.next_steps.present?
-            h2(class: "font-bold text-lg md:text-xl mt-4") { "Next steps" }
+            h2(class: "font-bold text-xl md:text-2xl mt-4") { "Next steps" }
 
             div(class: "mt-2") do
               Rinku.auto_link(

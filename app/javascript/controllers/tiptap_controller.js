@@ -15,7 +15,7 @@ export const Heading = BaseHeading.configure({ levels: [1, 2] }).extend({
   renderHTML({ node, HTMLAttributes }) {
     const hasLevel = this.options.levels.includes(node.attrs.level)
     const level = hasLevel ? node.attrs.level : this.options.levels[0]
-    const classes = { 1: 'text-2xl', 2: 'text-xl' }
+    const classes = { 1: 'text-xl md:text-2xl', 2: 'text-lg md:text-xl' }
 
     return [
       `h${level}`,
