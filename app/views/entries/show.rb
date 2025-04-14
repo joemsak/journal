@@ -22,7 +22,7 @@ class Views::Entries::Show < Views::Base
       )
 
       entry.tasks.each do |task|
-        div(class: "mt-4 pt-4 rounded border-t border-gray-300 wrap-break-word") do
+        div(class: "mt-4 wrap-break-word") do
           h2(class: "font-bold text-lg md:text-xl") { task.title }
 
           if task.notes.present?
