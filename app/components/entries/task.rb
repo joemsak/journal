@@ -17,7 +17,8 @@ class Components::Entries::Task < Components::Base
         data: {
           task_target: :title,
           action: %(
-            keydown.enter->task#saveTitle:prevent
+            blur->task#saveTitle
+            keydown.enter->task#blurTitle:prevent
             keydown.esc->task#blurTitle
           ).squish
         },
@@ -58,6 +59,7 @@ class Components::Entries::Task < Components::Base
             attribute: :notes,
             path: entry_path(entry),
             method: :patch,
+            data: { task_target: :editor }
           )
         end
 
@@ -67,6 +69,7 @@ class Components::Entries::Task < Components::Base
             attribute: :challenges,
             path: entry_path(entry),
             method: :patch,
+            data: { task_target: :editor }
           )
         end
 
@@ -76,6 +79,7 @@ class Components::Entries::Task < Components::Base
             attribute: :successes,
             path: entry_path(entry),
             method: :patch,
+            data: { task_target: :editor }
           )
         end
 
@@ -85,6 +89,7 @@ class Components::Entries::Task < Components::Base
             attribute: :improvements,
             path: entry_path(entry),
             method: :patch,
+            data: { task_target: :editor }
           )
         end
 
@@ -94,6 +99,7 @@ class Components::Entries::Task < Components::Base
             attribute: :nextSteps,
             path: entry_path(entry),
             method: :patch,
+            data: { task_target: :editor }
           )
         end
       end

@@ -3,25 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="task"
 export default class extends Controller {
   static targets = [
-    'notesBtn',
-    'notes'
+    'editor'
   ]
 
   static values = {
     entryDate: String,
     taskId: Number
-  }
-
-  toggleNotes() {
-    const button = this.notesBtnTarget
-    const notes = this.notesTarget
-
-    notes.classList.toggle('hidden')
-
-    if (notes.classList.contains('hidden'))
-      button.innerText = `${String.fromCharCode(43)} Show notes`
-    else
-      button.innerText = `${String.fromCharCode(8722)} Hide notes`
   }
 
   saveTitle(event) {
@@ -31,13 +18,14 @@ export default class extends Controller {
       'Content-Type': 'application/json',
       'X-CSRF-Token': token
     }
-    const body = JSON.stringify({
+    const params = {
       entryDate: this.entryDateValue,
-      task: {
-        title: el.innerText,
-        id: this.taskIdValue,
-      }
-    })
+      task: {title: el.innerText}
+    }
+
+    if (this.taskIdValue) params.task['id'] = this.taskIdValue
+
+    const body = JSON.stringify(params)
 
     fetch('/tasks', { method: 'PATCH', headers, body })
       .then(resp => {
@@ -46,7 +34,8 @@ export default class extends Controller {
       })
       .then(json => {
         this.taskIdValue = json.taskId
-        el.blur()
+        this.editorTargets.forEach(e => e.dataset.tiptapResourceIdValue = json.taskId)
+        this.blurTitle(event)
       })
       .catch(err => console.error(err))
   }

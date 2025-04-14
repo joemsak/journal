@@ -1,12 +1,13 @@
 class Components::TipTap::Editor < Components::Base
-  attr_reader :path, :method, :content, :entity_name, :resource_id, :attribute
+  attr_reader :path, :method, :content, :entity_name, :resource_id, :attribute, :data
 
-  def initialize(resource:, attribute:, path:, method:)
+  def initialize(resource:, attribute:, path:, method:, data: {})
     @entity_name = resource.class.name.underscore
     @resource_id = resource.id
     @attribute = attribute
     @path = path
     @method = method
+    @data = data
     @content = resource.public_send(String(attribute).underscore)
   end
 
@@ -21,7 +22,7 @@ class Components::TipTap::Editor < Components::Base
         tiptap_entity_name_value: entity_name,
         tiptap_attribute_value: attribute,
         tiptap_resource_id_value: resource_id
-      }
+      }.merge(data)
     ) do
       render Toolbar.new
       div(data: { tiptap_target: :editor }, class: "hidden mt-4 outline")
