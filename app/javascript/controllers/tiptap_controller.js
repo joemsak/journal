@@ -1,37 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
 
-import { Editor, mergeAttributes } from 'https://esm.sh/@tiptap/core'
+import { Editor } from 'https://esm.sh/@tiptap/core'
 
 import Document from 'https://esm.sh/@tiptap/extension-document'
 import Text from 'https://esm.sh/@tiptap/extension-text'
 import Paragraph from 'https://esm.sh/@tiptap/extension-paragraph'
-import BaseHeading from 'https://esm.sh/@tiptap/extension-heading'
+import Heading from 'https://esm.sh/@tiptap/extension-heading'
+import Bold from 'https://esm.sh/@tiptap/extension-bold'
 import BulletList from 'https://esm.sh/@tiptap/extension-bullet-list'
 import ListItem from 'https://esm.sh/@tiptap/extension-list-item'
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote'
 import CodeBlock from 'https://esm.sh/@tiptap/extension-code-block'
 
-export const Heading = BaseHeading.configure({ levels: [1, 2] }).extend({
-  renderHTML({ node, HTMLAttributes }) {
-    const hasLevel = this.options.levels.includes(node.attrs.level)
-    const level = hasLevel ? node.attrs.level : this.options.levels[0]
-    const classes = { 1: 'text-xl md:text-2xl', 2: 'text-lg md:text-xl' }
-
-    return [
-      `h${level}`,
-      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        class: `font-bold ${classes[level]}`,
-      }),
-      0,
-    ]
-  },
-})
-
 // Connects to data-controller="tiptap"
 export default class extends Controller {
   static targets = [
-    'heading1',
-    'heading2',
+    'heading',
+    'bold',
     'bulletList',
     'blockQuote',
     'codeBlock',
@@ -97,26 +82,22 @@ export default class extends Controller {
         Document,
         Text,
         Paragraph.configure({
-          HTMLAttributes: {
-            class: "min-h-4"
-          }
+          HTMLAttributes: {class: "min-h-4"}
         }),
-        Heading,
+        Heading.configure({
+          levels: [2],
+          HTMLAttributes: {class: 'font-bold text-lg md:text-xl'}
+        }),
+        Bold,
         BulletList.configure({
-          HTMLAttributes: {
-            class: "list-disc ml-6"
-          }
+          HTMLAttributes: {class: "list-disc ml-6"}
         }),
         ListItem,
         Blockquote.configure({
-          HTMLAttributes: {
-            class: "p-4 my-4 border-s-4 border-gray-300"
-          }
+          HTMLAttributes: {class: "p-4 my-4 border-s-4 border-gray-300"}
         }),
         CodeBlock.configure({
-          HTMLAttributes: {
-            class: "p-4 bg-gray-100 w-full truncate overflow-x-auto"
-          }
+          HTMLAttributes: {class: "p-4 bg-gray-100 w-full truncate overflow-x-auto"}
         }),
       ],
       autofocus: true,
@@ -134,8 +115,8 @@ export default class extends Controller {
 
   connect() {
     this.editor.on('selectionUpdate', ({ editor }) => {
-      this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
-      this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+      this.headingTarget.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+      this.boldTarget.classList.toggle("bg-blue-200", editor.isActive('bold'))
       this.bulletListTarget.classList.toggle("bg-blue-200", editor.isActive('bulletList'))
       this.blockQuoteTarget.classList.toggle("bg-blue-200", editor.isActive('blockquote'))
       this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
@@ -148,13 +129,17 @@ export default class extends Controller {
   }
 
   toggleHeading(event) {
-    const level = event.params.level
     const editor = this.editor
 
-    editor.chain().focus().toggleHeading({level}).run()
-    this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
-    this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+    editor.chain().focus().toggleHeading({level: 2}).run()
+    this.headingTarget.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
     this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
+  }
+
+  toggleBold(event) {
+    const editor = this.editor
+    editor.chain().focus().toggleBold().run()
+    this.boldTarget.classList.toggle("bg-blue-200", editor.isActive('bold'))
   }
 
   toggleBulletList(event) {
@@ -173,7 +158,6 @@ export default class extends Controller {
     const editor = this.editor
     editor.chain().focus().toggleCodeBlock().run()
     this.codeBlockTarget.classList.toggle("bg-blue-200", editor.isActive('codeBlock'))
-    this.heading1Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 1}))
-    this.heading2Target.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
+    this.headingTarget.classList.toggle("bg-blue-200", editor.isActive('heading', {level: 2}))
   }
 }

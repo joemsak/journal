@@ -3,40 +3,38 @@ class Components::TipTap::Toolbar < Components::Base
     div(class: "flex justify-between items-center") do
       div(class: "flex gap-2") do
         render Button.new(
-          target: :heading1,
-          action: "toggleHeading",
-          params: { level: 1 },
-          title: "Heading 1",
-          icon: "angles-up"
+          target: :heading,
+          action: :toggleHeading,
+          title: :Heading,
+          icon: :heading
         )
 
         render Button.new(
-          target: :heading2,
-          action: "toggleHeading",
-          params: { level: 2 },
-          title: "Heading 2",
-          icon: "angle-up"
+          target: :bold,
+          action: :toggleBold,
+          title: :Bold,
+          icon: :bold
         )
 
         render Button.new(
           target: :bulletList,
-          action: "toggleBulletList",
+          action: :toggleBulletList,
           title: "Bullet List",
           icon: "list-ul"
         )
 
         render Button.new(
           target: :blockQuote,
-          action: "toggleBlockquote",
-          title: "Blockquote",
+          action: :toggleBlockquote,
+          title: :Blockquote,
           icon: "quote-left"
         )
 
         render Button.new(
           target: :codeBlock,
-          action: "toggleCodeBlock",
+          action: :toggleCodeBlock,
           title: "Code Block",
-          icon: "code"
+          icon: :code
         )
       end
 
