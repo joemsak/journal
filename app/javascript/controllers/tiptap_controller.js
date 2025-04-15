@@ -39,6 +39,9 @@ export default class extends Controller {
     const onUpdate = ({ editor }) => {
       if (this.updateTimeoutId) clearTimeout(this.updateTimeoutId)
 
+      let content = null
+      if (!!editor.getText().length) content = editor.getHTML()
+
       const token = document.querySelector("meta[name='csrf-token']").content
 
       const method = this.methodValue.toUpperCase()
@@ -50,7 +53,7 @@ export default class extends Controller {
 
       const params = {}
       params[this.entityNameValue] = {}
-      params[this.entityNameValue][this.attributeValue] = editor.getHTML()
+      params[this.entityNameValue][this.attributeValue] = content
       if (this.resourceIdValue) params[this.entityNameValue]['id'] = this.resourceIdValue
 
       const body = JSON.stringify(params)
