@@ -15,3 +15,5 @@ pin "@tailwindcss/typography", to: "@tailwindcss--typography.js" # @0.5.16
 pin "cssesc" # @3.0.0
 pin "postcss-selector-parser" # @6.0.10
 pin "util-deprecate" # @1.0.2
+pin "motion", to: "https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm"
+
