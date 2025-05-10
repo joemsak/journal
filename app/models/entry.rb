@@ -3,6 +3,10 @@ class Entry < ApplicationRecord
 
   accepts_nested_attributes_for :tasks
 
+  def week
+    entry_date.beginning_of_week
+  end
+
   def to_param
     entry_date.strftime("%Y-%m-%d")
   end
