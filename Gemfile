@@ -62,7 +62,7 @@ gem "phlex-rails", "~> 2.3.1"
 
 gem "tailwind_merge", "~> 1.3.1"
 
-gem "tailwindcss-rails", "~> 4.2.3"
+gem "tailwindcss-rails", "~> 4.4.0"
 
 gem "foreman", "~> 0.88.1", group: :development
 
