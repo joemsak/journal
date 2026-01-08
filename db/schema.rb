@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_14_005600) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_08_200059) do
   create_table "entries", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.date "entry_date"
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "entry_id", null: false
     t.text "challenges"
-    t.text "successes"
+    t.datetime "created_at", null: false
+    t.integer "entry_id", null: false
     t.text "improvements"
     t.text "next_steps"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.text "notes"
+    t.text "successes"
     t.string "title"
+    t.datetime "updated_at", null: false
     t.index ["entry_id"], name: "index_tasks_on_entry_id"
   end
 
