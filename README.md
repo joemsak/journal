@@ -2,6 +2,11 @@
 
 Personal app for me to keep a daily coder journal
 
+## Tech Stack
+
+* Ruby 4.0
+* Rails 8.1
+
 ## Features
 
 * TipTap custom editor https://tiptap.dev
