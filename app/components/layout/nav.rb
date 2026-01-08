@@ -20,7 +20,7 @@ class Components::Layout::Nav < Components::Base
             else
               AccordionItem(open: current_week?(week)) do
                 AccordionTrigger(class: "cursor-pointer") do
-                  p(class: "font-medium") { week.strftime('%B %-d') }
+                  p(class: "font-medium") { week.strftime("%B %-d") }
                   AccordionIcon()
                 end
 

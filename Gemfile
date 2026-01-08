@@ -45,7 +45,7 @@ group :development, :test do
   gem "debug", "~> 1.11.0", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", "~> 7.0.2", require: false
+  gem "brakeman", "~> 7.1.2", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
@@ -72,6 +72,6 @@ gem "rinku", "~> 2.0.6"
 
 gem "pry-rails", "~> 0.3.11", group: :development
 
-gem "pry-remote", "~> 0.1.8", group: :development
+# gem "pry-remote", "~> 0.1.8", group: :development  # Incompatible with Ruby 4.0 (missing readline)
 
 gem "pessimize", "~> 0.5.0", group: :development
