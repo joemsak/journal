@@ -183,11 +183,12 @@ GEM
     pessimize (0.5.0)
       bundler
       optimist
-    phlex (2.2.1)
+    phlex (2.3.1)
       zeitwerk (~> 2.7)
-    phlex-rails (2.2.0)
-      phlex (~> 2.2.1)
+    phlex-rails (2.3.1)
+      phlex (~> 2.3.0)
       railties (>= 7.1, < 9)
+      zeitwerk (~> 2.7)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -378,7 +379,7 @@ DEPENDENCIES
   jbuilder (~> 2.13.0)
   kamal (~> 2.8.2)
   pessimize (~> 0.5.0)
-  phlex-rails (~> 2.2.0)
+  phlex-rails (~> 2.3.1)
   propshaft (~> 1.1.0)
   pry-rails (~> 0.3.11)
   pry-remote (~> 0.1.8)
