@@ -29,20 +29,20 @@ gem "solid_queue", "~> 1.1.5"
 gem "solid_cable", "~> 3.0.12"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.18.4", require: false
+gem "bootsnap", "~> 1.18.6", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", "~> 2.5.3", require: false
+gem "kamal", "~> 2.8.2", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.13", require: false
+gem "thruster", "~> 0.1.16", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", "~> 1.10.0", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", "~> 1.11.0", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", "~> 7.0.2", require: false
@@ -60,7 +60,7 @@ gem "ruby_ui", "~> 1.0.1", group: :development, require: false
 
 gem "phlex-rails", "~> 2.2.0"
 
-gem "tailwind_merge", "~> 1.2.0"
+gem "tailwind_merge", "~> 1.3.1"
 
 gem "tailwindcss-rails", "~> 4.2.3"
 
