@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :entries, except: %i[index create edit destroy], param: :entry_date
   resources :task_forms, only: %i[create]
+  resources :successes, only: :index
   patch :tasks, to: "tasks#update"
 
   resources :sessions, only: %i[new create]
