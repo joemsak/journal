@@ -5,11 +5,11 @@ gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1.0"
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 2.6.0"
+gem "sqlite3", "~> 2.7.3"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.6.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails", "~> 2.1.0"
+gem "importmap-rails", "~> 2.2.2"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.20"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -26,10 +26,10 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache", "~> 1.0.7"
 gem "solid_queue", "~> 1.1.5"
-gem "solid_cable", "~> 3.0.7"
+gem "solid_cable", "~> 3.0.12"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.18.4", require: false
+gem "bootsnap", "~> 1.18.6", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", "~> 2.8.2", require: false
@@ -42,7 +42,7 @@ gem "thruster", "~> 0.1.16", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", "~> 1.10.0", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", "~> 1.11.0", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", "~> 7.0.2", require: false
@@ -58,9 +58,9 @@ end
 
 gem "ruby_ui", "~> 1.0.1", group: :development, require: false
 
-gem "phlex-rails", "~> 2.2.0"
+gem "phlex-rails", "~> 2.3.1"
 
-gem "tailwind_merge", "~> 1.2.0"
+gem "tailwind_merge", "~> 1.3.1"
 
 gem "tailwindcss-rails", "~> 4.2.3"
 
