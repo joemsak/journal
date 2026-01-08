@@ -42,7 +42,7 @@ gem "thruster", "~> 0.1.16", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", "~> 1.10.0", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", "~> 1.11.0", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", "~> 7.0.2", require: false
@@ -60,7 +60,7 @@ gem "ruby_ui", "~> 1.0.1", group: :development, require: false
 
 gem "phlex-rails", "~> 2.3.1"
 
-gem "tailwind_merge", "~> 1.2.0"
+gem "tailwind_merge", "~> 1.3.1"
 
 gem "tailwindcss-rails", "~> 4.2.3"
 
