@@ -56,7 +56,7 @@ group :development do
   gem "web-console", "~> 4.2.1"
 end
 
-gem "ruby_ui", "~> 1.0.1", group: :development, require: false
+gem "ruby_ui", "~> 1.0.2", group: :development, require: false
 
 gem "phlex-rails", "~> 2.3.1"
 
