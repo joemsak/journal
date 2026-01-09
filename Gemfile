@@ -66,7 +66,7 @@ gem "tailwindcss-rails", "~> 4.4.0"
 
 gem "foreman", "~> 0.88.1", group: :development
 
-gem "bcrypt", "~> 3.1.20"
+gem "bcrypt", "~> 3.1.21"
 
 gem "rinku", "~> 2.0.6"
 
